@@ -4,9 +4,11 @@ import { employeeSchema } from './schema/employee.schema';
 import { EmployeeController } from './employee.controller';
 import { EmployeeService } from './employee.service';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     MongooseModule.forFeature([
       {
         name: Employee.name,

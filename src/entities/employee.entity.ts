@@ -1,6 +1,8 @@
 class Employee {
-  FirstName: string;
-  LastName: string;
-  Designation: string;
+  firstName: string;
+  lastName: string;
+  designation: string;
+  email: string;
+  password: string;
 }
 export default Employee;

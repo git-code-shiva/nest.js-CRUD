@@ -10,14 +10,42 @@ import {
 import { EmployeeService } from './employee.service';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
 import { UpdateEmployeeDto } from './dto/update-employee.dto';
+import * as bcrypt from 'bcrypt';
+import { loginDto } from './dto/login.dto';
 
 @Controller('employee')
 export class EmployeeController {
   constructor(private readonly employeeServices: EmployeeService) {}
 
-  @Post()
-  create(@Body() CreateEmployeeDto: CreateEmployeeDto) {
-    return this.employeeServices.create(CreateEmployeeDto);
+  @Post('register')
+  async create(@Body() CreateEmployeeDto: CreateEmployeeDto) {
+    try {
+      const isExist = await this.employeeServices.findOne(
+        CreateEmployeeDto.email,
+      );
+
+      if (isExist) {
+        return {
+          error: true,
+          message: 'Email already exists',
+        };
+      }
+
+      const hashedPass = await bcrypt.hash(CreateEmployeeDto.password, 10);
+      const hashedEmpDto: CreateEmployeeDto = {
+        ...CreateEmployeeDto,
+        password: hashedPass,
+      };
+
+      return await this.employeeServices.create(hashedEmpDto);
+    } catch (error) {
+      return error.message;
+    }
+  }
+
+  @Post('login')
+  async login(@Body() loginDto: loginDto) {
+    return this.employeeServices.login(loginDto);
   }
 
   @Get()
