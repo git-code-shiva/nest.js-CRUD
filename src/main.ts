@@ -8,6 +8,8 @@ const port = 5000;
 async function bootstrap() {
   dotenv.config();
   const app = await NestFactory.create(AppModule);
+  app.enableCors();
+
   await app
     .listen(`${port}`)
     .then(() => {

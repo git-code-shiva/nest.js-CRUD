@@ -28,7 +28,7 @@ export class EmployeeService {
     return createdEmployee.save();
   }
 
-  async login(loginDto: loginDto): Promise<EmployeeDocument> {
+  async login(loginDto: loginDto): Promise<{ employee: any; token: string }> {
     const { email, password } = loginDto;
 
     const employee = await this.employeeModel.findOne({ email: email }).exec();
@@ -48,7 +48,7 @@ export class EmployeeService {
       expiresIn: '1h',
     });
 
-    return employee;
+    return { employee, token };
   }
 
   async findAll(): Promise<EmployeeDocument[]> {

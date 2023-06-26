@@ -45,7 +45,12 @@ export class EmployeeController {
 
   @Post('login')
   async login(@Body() loginDto: loginDto) {
-    return this.employeeServices.login(loginDto);
+    try {
+      const result = await this.employeeServices.login(loginDto);
+      return result;
+    } catch (error) {
+      return error.message;
+    }
   }
 
   @Get()
