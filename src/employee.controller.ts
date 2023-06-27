@@ -25,10 +25,7 @@ export class EmployeeController {
       );
 
       if (isExist) {
-        return {
-          error: true,
-          message: 'Email already exists',
-        };
+        return 'Email already exists';
       }
 
       const hashedPass = await bcrypt.hash(CreateEmployeeDto.password, 10);

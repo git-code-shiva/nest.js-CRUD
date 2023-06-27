@@ -17,7 +17,7 @@ export class EmployeeService {
 
   async create(createEmployeeDto: CreateEmployeeDto) {
     // const isExist = await this.employeeModel.find({
-    //   Email: createEmployeeDto.Email,
+    //   email: createEmployeeDto.email,
     // });
 
     // if (isExist) {
