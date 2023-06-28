@@ -4,6 +4,7 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { EmployeeModule } from './employee.module';
 import { ConfigModule } from '@nestjs/config';
+import { TodosModule } from './todos/todos.module';
 
 @Module({
   imports: [
@@ -13,6 +14,8 @@ import { ConfigModule } from '@nestjs/config';
     // controllers: [AppController],
     // providers: [AppService],
     EmployeeModule,
+
+    TodosModule,
   ],
 })
 export class AppModule {}
