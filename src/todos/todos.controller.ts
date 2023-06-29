@@ -11,6 +11,7 @@ import {
 import { TodosService } from './todos.service';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
+import { ObjectId } from 'mongodb';
 
 @Controller('todos')
 export class TodosController {
@@ -18,6 +19,7 @@ export class TodosController {
 
   @Post('createTodo')
   async create(@Body() createTodoDto: CreateTodoDto) {
+    createTodoDto.userId = new ObjectId(createTodoDto.userId);
     return await this.todosService.create(createTodoDto);
   }
 
