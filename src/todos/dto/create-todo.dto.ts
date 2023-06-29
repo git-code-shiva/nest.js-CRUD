@@ -1,2 +1,4 @@
 import { Todo } from '../entities/todo.entity';
-export class CreateTodoDto extends Todo {}
+export class CreateTodoDto extends Todo {
+  userId: any;
+}
