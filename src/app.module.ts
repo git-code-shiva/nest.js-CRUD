@@ -9,7 +9,7 @@ import { TodosModule } from './todos/todos.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    MongooseModule.forRoot('mongodb://localhost:27017/Employee'),
+    MongooseModule.forRoot(process.env.MONGO_URI),
 
     // controllers: [AppController],
     // providers: [AppService],
